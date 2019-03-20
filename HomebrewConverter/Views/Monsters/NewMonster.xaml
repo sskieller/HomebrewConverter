@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="HomebrewConverter.Views.Monsters.NewMonster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HomebrewConverter.Views.Monsters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+
+
+    <UserControl.Resources>
+
+
+
+        <Style TargetType="Label" >
+            <Setter Property="Margin" Value="0 0 0 0"/>
+
+            <Setter Property="MaxHeight" Value="25"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="NumberInputTextBox">
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="TextAlignment" Value="Justify"/>
+            <Setter Property="Margin" Value="0 3 5 0"/>
+            <Setter Property="MinWidth" Value="25"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="ModifierInputTextBox">
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="TextAlignment" Value="Justify"/>
+            <Setter Property="Margin" Value="0 3 5 0"/>
+            <Setter Property="MinWidth" Value="25"/>
+
+
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="TextInputTextBox">
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="TextAlignment" Value="Justify"/>
+            <Setter Property="Margin" Value="0 3 0 0"/>
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="SelectedValuePath" Value="Content"/>
+            <Setter Property="Margin" Value="0 3 0 0"/>
+            <Setter Property="MinWidth" Value="100"/>
+        </Style>
+
+        <Style TargetType="ComboBoxItem">
+
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="RowPanel">
+            <Setter Property="MaxHeight" Value="25"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <Label Content="Here you can write in the data for a monster"/>
+        <StackPanel Style="{StaticResource RowPanel}">
+            <Label Content="Title:"/>
+            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding Path=Title}" GotKeyboardFocus="{Binding TextBoxKeyboardFocus}" />
+            <Label Content="Monster Size:"/>
+            <ComboBox SelectedValue="{Binding Path=SubtitleSize}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus">
+                <ComboBoxItem Content="Tiny"/>
+                <ComboBoxItem Content="Small"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="Large"/>
+                <ComboBoxItem Content="Huge"/>
+                <ComboBoxItem Content="Gargantuan"/>
+            </ComboBox>
+            <Label Content="Monster Type:"/>
+            <ComboBox SelectedValue="{Binding Path=SubtitleType}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus">
+                <ComboBoxItem Content="Aberration"/>
+                <ComboBoxItem Content="Beast"/>
+                <ComboBoxItem Content="Celestial"/>
+                <ComboBoxItem Content="Construct"/>
+                <ComboBoxItem Content="Dragon"/>
+                <ComboBoxItem Content="Elemental"/>
+                <ComboBoxItem Content="Fey"/>
+                <ComboBoxItem Content="Fiend"/>
+                <ComboBoxItem Content="Giant"/>
+                <ComboBoxItem Content="Humanoid"/>
+                <ComboBoxItem Content="Monstrosity"/>
+                <ComboBoxItem Content="Ooze"/>
+                <ComboBoxItem Content="Plant"/>
+                <ComboBoxItem Content="Undead"/>
+            </ComboBox>
+            <Label Content="Alignment:"/>
+            <ComboBox SelectedValue="{Binding Path=SubtitleAlignment}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" >
+                <ComboBoxItem Content="Any"/>
+                <ComboBoxItem Content="Lawful Good"/>
+                <ComboBoxItem Content="Lawful Neutral"/>
+                <ComboBoxItem Content="Lawful Evil"/>
+                <ComboBoxItem Content="Neutral Good"/>
+                <ComboBoxItem Content="True Neutral"/>
+                <ComboBoxItem Content="Neutral Evil"/>
+                <ComboBoxItem Content="Chaotic Good"/>
+                <ComboBoxItem Content="Chaotic Neutral"/>
+                <ComboBoxItem Content="Chaotic Evil"/>
+            </ComboBox>
+
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource RowPanel}">
+            <Label Content="Armor Class:"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Special Armor:"/>
+            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding Path=ArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Hit Points:" />
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=HitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Speed:" />
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Speed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Climb:"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Climb}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Fly:"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Fly}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource RowPanel}">
+            <Label Content="STR + mod"/>
+            <TextBox Name="Str" MaxLength="2" Style="{StaticResource NumberInputTextBox}" TextChanged="StrBox_OnTextChanged"  Text="{Binding Path=Str}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource ModifierInputTextBox}" Text="{Binding Path=StrMod}"/>
+
+            <Label Content="DEX + mod"/>
+            <TextBox Name="Dex" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Dex}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=DexMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+
+            <Label Content="CON + mod"/>
+            <TextBox Name="Con" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Con}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ConMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+
+            <Label Content="INT + mod"/>
+            <TextBox Name="Int" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Int}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=IntMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+
+            <Label Content="WIS + mod"/>
+            <TextBox Name="Wis" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Wis}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=WisMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+
+            <Label Content="CHA + mod"/>
+            <TextBox Name="Cha" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Cha}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ChaMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource RowPanel}">
+            <Label Content="Saving Throws:   STR"   />
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowSTR}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="DEX"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowDEX}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="CON"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowCON}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="INT"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowINT}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="WIS"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowWIS}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="CHA"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowCHA}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource RowPanel}">
+            <Label Content="Skill 1: " />
+            <ComboBox x:Name="Skill1" Text="{Binding Path=Skill1}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <Label Content="Skill 2: " />
+            <ComboBox x:Name="Skill2" Text="{Binding Path=Skill2}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <Label Content="Skill 3: " />
+            <ComboBox x:Name="Skill3" Text="{Binding Path=Skill3}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <Label Content="Skill 4: " />
+            <ComboBox x:Name="Skill4" Text="{Binding Path=Skill4}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+        </StackPanel>
+        <Button Content="Submit" Click="ButtonBase_OnClick" />
+
+        <TextBox x:Name="PrintedValues" Text="Print out" Height="Auto" IsReadOnly="True"/>
+    </StackPanel>
+</UserControl>

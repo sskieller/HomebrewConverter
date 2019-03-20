@@ -1,0 +1,32 @@
+<Application x:Class="HomebrewConverter.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             StartupUri="MainWindow.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:HomebrewConverter.ViewModel"
+             xmlns:vmConverters="clr-namespace:HomebrewConverter.ViewModel.Converters"
+             xmlns:viewsMonsters="clr-namespace:HomebrewConverter.Views.Monsters"
+             xmlns:viewsConverters="clr-namespace:HomebrewConverter.Views.Converters"
+             xmlns:vmMonsters="clr-namespace:HomebrewConverter.ViewModel.CreateNew">
+
+    <Application.Resources>
+        <ResourceDictionary>
+                 <!--
+                 DataTemplate says that if a data type is of a particular view-model type
+                 then render the appropriate view. 
+                 The DataContext for the underlying view is already set at this point, so
+                 the view (UserControl) does not need to have it's DataContext set directly.
+                 -->
+            <DataTemplate DataType="{x:Type vmConverters:HomebreweryViewModel}">
+                <viewsConverters:Homebrewery/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vmMonsters:CreateNewMonsterViewModel}">
+                <viewsMonsters:CreateNewMonster/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
