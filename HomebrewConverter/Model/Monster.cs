@@ -13,11 +13,12 @@ namespace HomebrewConverter.Model
 
         }
 
-
-        public Monster(string title, string monsterType)
+        public Monster(string title, string monsterSize, string monsterType, string monsterAlignment)
         {
             _title = title;
+            _monsterSize = monsterSize;
             _monsterType = monsterType;
+            _monsterAlignment = monsterAlignment;
         }
 
 
@@ -34,6 +35,23 @@ namespace HomebrewConverter.Model
             }
         }
 
+        private string _monsterSize;
+
+        public string MonsterSize
+        {
+            get => _monsterSize;
+            set
+            {
+                if (_monsterSize == value)
+                {
+                    return;
+                }
+
+                _monsterSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _monsterType;
         public string MonsterType
         {
@@ -46,6 +64,21 @@ namespace HomebrewConverter.Model
                 }
 
                 _monsterType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _monsterAlignment;
+
+        public string MonsterAlignment
+        {
+            get => _monsterAlignment;
+            set
+            {
+                if (_monsterAlignment == value)
+                    return;
+
+                _monsterAlignment = value;
                 OnPropertyChanged();
             }
         }

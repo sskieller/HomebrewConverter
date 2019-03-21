@@ -64,46 +64,14 @@
         <Label Content="Here you can write in the data for a monster"/>
         <StackPanel Style="{StaticResource RowPanel}">
             <Label Content="Title:"/>
-            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding Path=Title}" GotKeyboardFocus="{Binding TextBoxKeyboardFocus}" />
+            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding MonsterTitle}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" />
             <Label Content="Monster Size:"/>
-            <ComboBox SelectedValue="{Binding Path=SubtitleSize}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus">
-                <ComboBoxItem Content="Tiny"/>
-                <ComboBoxItem Content="Small"/>
-                <ComboBoxItem Content="Medium"/>
-                <ComboBoxItem Content="Large"/>
-                <ComboBoxItem Content="Huge"/>
-                <ComboBoxItem Content="Gargantuan"/>
-            </ComboBox>
+
+            <ComboBox SelectedValue="{Binding SelectedMonsterSize}" ItemsSource="{Binding MonsterSizeList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             <Label Content="Monster Type:"/>
-            <ComboBox SelectedValue="{Binding Path=SubtitleType}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus">
-                <ComboBoxItem Content="Aberration"/>
-                <ComboBoxItem Content="Beast"/>
-                <ComboBoxItem Content="Celestial"/>
-                <ComboBoxItem Content="Construct"/>
-                <ComboBoxItem Content="Dragon"/>
-                <ComboBoxItem Content="Elemental"/>
-                <ComboBoxItem Content="Fey"/>
-                <ComboBoxItem Content="Fiend"/>
-                <ComboBoxItem Content="Giant"/>
-                <ComboBoxItem Content="Humanoid"/>
-                <ComboBoxItem Content="Monstrosity"/>
-                <ComboBoxItem Content="Ooze"/>
-                <ComboBoxItem Content="Plant"/>
-                <ComboBoxItem Content="Undead"/>
-            </ComboBox>
-            <Label Content="Alignment:"/>
-            <ComboBox SelectedValue="{Binding Path=SubtitleAlignment}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" >
-                <ComboBoxItem Content="Any"/>
-                <ComboBoxItem Content="Lawful Good"/>
-                <ComboBoxItem Content="Lawful Neutral"/>
-                <ComboBoxItem Content="Lawful Evil"/>
-                <ComboBoxItem Content="Neutral Good"/>
-                <ComboBoxItem Content="True Neutral"/>
-                <ComboBoxItem Content="Neutral Evil"/>
-                <ComboBoxItem Content="Chaotic Good"/>
-                <ComboBoxItem Content="Chaotic Neutral"/>
-                <ComboBoxItem Content="Chaotic Evil"/>
-            </ComboBox>
+            <ComboBox SelectedValue="{Binding SelectedMonsterType}" Text="{Binding MonsterTypeList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+                <Label Content="Alignment:"/>
+            <ComboBox SelectedValue="{Binding SelectedAlignment}" Text="{Binding AlignmentList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" />
 
         </StackPanel>
 
@@ -124,7 +92,7 @@
 
         <StackPanel Style="{StaticResource RowPanel}">
             <Label Content="STR + mod"/>
-            <TextBox Name="Str" MaxLength="2" Style="{StaticResource NumberInputTextBox}" TextChanged="StrBox_OnTextChanged"  Text="{Binding Path=Str}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Name="Str" MaxLength="2" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Str}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <TextBox Style="{StaticResource ModifierInputTextBox}" Text="{Binding Path=StrMod}"/>
 
             <Label Content="DEX + mod"/>
@@ -166,16 +134,16 @@
 
         <StackPanel Style="{StaticResource RowPanel}">
             <Label Content="Skill 1: " />
-            <ComboBox x:Name="Skill1" Text="{Binding Path=Skill1}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <ComboBox x:Name="Skill1" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             <Label Content="Skill 2: " />
-            <ComboBox x:Name="Skill2" Text="{Binding Path=Skill2}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <ComboBox x:Name="Skill2" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             <Label Content="Skill 3: " />
-            <ComboBox x:Name="Skill3" Text="{Binding Path=Skill3}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <ComboBox x:Name="Skill3" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             <Label Content="Skill 4: " />
-            <ComboBox x:Name="Skill4" Text="{Binding Path=Skill4}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+            <ComboBox x:Name="Skill4" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
         </StackPanel>
-        <Button Content="Submit" Click="ButtonBase_OnClick" />
+        <Button Content="Submit" Command="{Binding AddMonster}"/>
 
-        <TextBox x:Name="PrintedValues" Text="Print out" Height="Auto" IsReadOnly="True"/>
+        <TextBox x:Name="PrintedValues" Text="{Binding Monsters}" Height="Auto" IsReadOnly="True"/>
     </StackPanel>
 </UserControl>

@@ -18,4 +18,6 @@ C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Hom
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.csproj.CoreCompileInputs.cache
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.exe
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.pdb
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Views\Monsters\NewMonster.g.cs
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Views\Monsters\NewMonster.baml
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.csprojAssemblyReference.cache
