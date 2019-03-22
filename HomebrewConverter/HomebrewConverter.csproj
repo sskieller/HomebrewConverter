@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Copied Code\OldMonsterModel.cs" />
     <Compile Include="Copied Code\OldMonsterViewModel.cs" />
+    <Compile Include="DummyDebugger.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\Converters\HomebreweryViewModel.cs" />

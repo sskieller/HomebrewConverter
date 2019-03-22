@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,16 +11,18 @@ namespace HomebrewConverter.ViewModel.CreateNew
 {
     internal class CreateNewMonsterViewModel : ViewModelBase
     {
+        // Diagnose in XAML:
+        //  {Binding Path=X, diag:PresentationTraceSources.TraceLevel=High}
+
         #region Construction
 
         public CreateNewMonsterViewModel()
         {
             AddMonster = new RelayCommand(_ => AddMonsterExecute(), _ => true);
 
-            Monsters = new ObservableCollection<Monster>
-            {
-
-            };
+            Monsters = new ObservableCollection<Monster>();
+            
+            Debug.WriteLine(MonsterSizeList.FirstOrDefault());
 
             var monsters = new List<string> { "Acolyte", "Dragon", "Kraken" };
             foreach (var monster in monsters)
@@ -33,6 +36,12 @@ namespace HomebrewConverter.ViewModel.CreateNew
 
         #endregion
 
+
+        //x:Name="PeopleComboBox"
+        //DisplayMemberPath="Name"
+        //SelectedValue="{Binding Path=SelectedEntity.PersonID}"
+        //SelectedValuePath="ID"
+        ///>
 
         #region Properties
 
@@ -68,18 +77,14 @@ namespace HomebrewConverter.ViewModel.CreateNew
 
         #endregion
 
-
         
-
         #region Commands
-
-
-        
-
         
         private void AddMonsterExecute()
         {
-            Debug.WriteLine($"Monster added: {MonsterTitle}");
+            Debug.WriteLine($"Monster added.\n" +
+                            $"Title: {MonsterTitle}\n" +
+                            $"Size: {SelectedMonsterSize}");
             Monsters?.Add(new Monster
             {
                 Title = MonsterTitle,
@@ -92,20 +97,21 @@ namespace HomebrewConverter.ViewModel.CreateNew
 
         #endregion
 
+        
         private string _selectedMonsterSize;
         public string SelectedMonsterSize
         {
             get => _selectedMonsterSize;
             set
             {
-                if (_selectedMonsterSize == value)
-                    return;
+                if (_selectedMonsterSize == value) return;
 
                 _selectedMonsterSize = value;
                 OnPropertyChanged();
             }
         }
-        public List<string> MonsterSizeList = new List<string>()
+
+        public List<string> MonsterSizeList { get; set; } = new List<string>()
         {
             "Tiny",
             "Small",
@@ -115,8 +121,10 @@ namespace HomebrewConverter.ViewModel.CreateNew
             "Gargantuan",
         };
 
-        private string _selectedMonsterType;
 
+        // TODO: IMPLEMENT!
+
+        private string _selectedMonsterType;
         public string SelectedMonsterType
         {
             get => _selectedMonsterType;

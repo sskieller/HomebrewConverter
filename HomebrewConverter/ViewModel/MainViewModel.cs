@@ -45,7 +45,8 @@ namespace HomebrewConverter.ViewModel
         // Associates the commands with their execution actions
         public MainViewModel()
         {
-            CurrentViewModel = HomebreweryViewModel;
+            CurrentViewModel = CreateNewMonsterViewModel;
+            //CurrentViewModel = HomebreweryViewModel;
             HomeBreweryViewCommand = new RelayCommand(_ => ExecuteHomeBreweryViewCommand());
             CreateNewMonsterViewCommand = new RelayCommand(_ => ExecuteCreateNewMonsterViewCommand());
         }
