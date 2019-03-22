@@ -90,13 +90,13 @@ namespace HomebrewConverter.ViewModel.Converters
 
             sb.Append($"> ___\n");
 
-            // ======================= AC, HP, Speed =======================
+            // ======================= AC, HP, MonsterSpeed =======================
             var splitString = lines[3].Split(new[] { "Armor Class" }, StringSplitOptions.RemoveEmptyEntries);
             sb.Append($"> - **Armor Class** {splitString[0]}\n");
             splitString = lines[4].Split(new[] { "Hit Points" }, StringSplitOptions.RemoveEmptyEntries);
             sb.Append($"> - **Hit Points** {splitString[0]}\n");
-            splitString = lines[5].Split(new[] { "Speed" }, StringSplitOptions.RemoveEmptyEntries);
-            sb.Append($"> - **Speed** {splitString[0]}\n");
+            splitString = lines[5].Split(new[] { "MonsterSpeed" }, StringSplitOptions.RemoveEmptyEntries);
+            sb.Append($"> - **MonsterSpeed** {splitString[0]}\n");
 
             sb.Append($"> ___\n");
 

@@ -116,26 +116,26 @@ namespace HomebrewConverter.ViewModel.CreateNew
             sb.Append(
                 $"Subtitle: {TempMonster.MonsterType}\n");
 
-            //sb.Append($"Armor Class: {_monster.ArmorClass} ({_monster.ArmorType})\n");
-            //sb.Append($"Hit Points: {_monster.HitPoints}\n");
-            //sb.Append($"Speed: {_monster.Speed}ft. ");
-            //if (_monster.Climb > 0)
+            //sb.Append($"Armor Class: {_monster.MonsterArmorClass} ({_monster.MonsterArmorType})\n");
+            //sb.Append($"Hit Points: {_monster.MonsterHitPoints}\n");
+            //sb.Append($"MonsterSpeed: {_monster.MonsterSpeed}ft. ");
+            //if (_monster.MonsterClimbSpeed > 0)
             //{
-            //    sb.Append($"Climb: {_monster.Climb}ft. ");
+            //    sb.Append($"MonsterClimbSpeed: {_monster.MonsterClimbSpeed}ft. ");
             //}
-            //if (_monster.Fly > 0)
+            //if (_monster.MonsterFlySpeed > 0)
             //{
-            //    sb.Append($"Fly: {_monster.Fly}ft.");
+            //    sb.Append($"MonsterFlySpeed: {_monster.MonsterFlySpeed}ft.");
             //}
             //sb.Append("\n");
 
             //sb.Append(
             //    $"Stats: " +
-            //    $"STR: {_monster.Str} ({WithSign(_monster.StrMod)}) " +
-            //    $"DEX: {_monster.Dex} ({WithSign(_monster.DexMod)}) " +
-            //    $"CON: {_monster.Con} ({WithSign(_monster.ConMod)}) " +
-            //    $"INT: {_monster.Int} ({WithSign(_monster.IntMod)}) " +
-            //    $"WIS: {_monster.Wis} ({WithSign(_monster.WisMod)}) " +
+            //    $"STR: {_monster.MonsterStrength} ({WithSign(_monster.StrMod)}) " +
+            //    $"DEX: {_monster.MonsterDexterity} ({WithSign(_monster.DexMod)}) " +
+            //    $"CON: {_monster.MonsterConstitution} ({WithSign(_monster.ConMod)}) " +
+            //    $"INT: {_monster.MonsterIntelligence} ({WithSign(_monster.IntMod)}) " +
+            //    $"WIS: {_monster.MonsterWisdom} ({WithSign(_monster.WisMod)}) " +
             //    $"CHA: {_monster.Cha} ({WithSign(_monster.ChaMod)})\n");
 
             //sb.Append($"Saving Throws: \n");

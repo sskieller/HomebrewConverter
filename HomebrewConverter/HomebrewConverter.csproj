@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="DummyDebugger.cs" />
     <Compile Include="Model\Categories.cs" />
+    <Compile Include="Model\NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\Converters\HomebreweryViewModel.cs" />

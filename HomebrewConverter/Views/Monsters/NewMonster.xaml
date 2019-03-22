@@ -9,32 +9,17 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="NewMonster_OnLoaded">
             
-
-
     <UserControl.Resources>
-
-
-
         <Style TargetType="Label" >
             <Setter Property="Margin" Value="0 0 0 0"/>
-
             <Setter Property="MaxHeight" Value="25"/>
         </Style>
 
         <Style TargetType="TextBox" x:Key="NumberInputTextBox">
             <Setter Property="MaxHeight" Value="20"/>
             <Setter Property="TextAlignment" Value="Justify"/>
-            <Setter Property="Margin" Value="0 3 5 0"/>
+            <Setter Property="Margin" Value="0 3 0 0"/>
             <Setter Property="MinWidth" Value="25"/>
-        </Style>
-
-        <Style TargetType="TextBox" x:Key="ModifierInputTextBox">
-            <Setter Property="MaxHeight" Value="20"/>
-            <Setter Property="TextAlignment" Value="Justify"/>
-            <Setter Property="Margin" Value="0 3 5 0"/>
-            <Setter Property="MinWidth" Value="25"/>
-
-
         </Style>
 
         <Style TargetType="TextBox" x:Key="TextInputTextBox">
@@ -48,7 +33,7 @@
              the term TargetType-->
         <Style TargetType="ComboBox">
             <Setter Property="MaxHeight" Value="20"/>
-            <Setter Property="SelectedValuePath" Value="Content"/>
+            <Setter Property="IsTextSearchEnabled" Value="True"/>
             <Setter Property="Margin" Value="0 3 0 0"/>
             <Setter Property="MinWidth" Value="100"/>
         </Style>
@@ -66,7 +51,7 @@
             
             <Label Content="Title:"/>
             <TextBox Style="{StaticResource TextInputTextBox}" 
-                     Text="{Binding TempMonster.MonsterTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Text="{Binding TempMonster.MonsterTitle}" 
                      GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" 
                      />
             
@@ -74,40 +59,37 @@
             <ComboBox x:Name="MonsterSizeComboBox"
                       ItemsSource="{Binding MonsterSizeList}"
                       SelectedItem="{Binding TempMonster.MonsterSize}"
-                      IsTextSearchEnabled="True"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"
                     />
 
             <Label Content="Type:"/>
             <ComboBox ItemsSource="{Binding MonsterTypeList}" 
                       SelectedItem="{Binding TempMonster.MonsterType}"
-                      IsTextSearchEnabled="True"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             
             <Label Content="Alignment:"/>
             <ComboBox ItemsSource="{Binding MonsterAlignmentList}" 
                       SelectedItem="{Binding TempMonster.MonsterAlignment}"
-                      IsTextSearchEnabled="True"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" />
 
         </StackPanel>
 
-        <!--<StackPanel Style="{StaticResource RowPanel}">
+        <StackPanel Style="{StaticResource RowPanel}">
             <Label Content="Armor Class:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Special Armor:"/>
-            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding Path=ArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Hit Points:" />
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Armor Type:"/>
+            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding TempMonster.MonsterArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <!--<Label Content="Hit Points:" />
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=HitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="Speed:" />
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Speed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="Climb:"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Climb}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="Fly:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Fly}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Fly}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>-->
         </StackPanel>
 
-        <StackPanel Style="{StaticResource RowPanel}">
+        <!--<StackPanel Style="{StaticResource RowPanel}">
             <Label Content="STR + mod"/>
             <TextBox Name="Str" MaxLength="2" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Str}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <TextBox Style="{StaticResource ModifierInputTextBox}" Text="{Binding Path=StrMod}"/>
@@ -159,9 +141,7 @@
             <Label Content="Skill 4: " />
             <ComboBox x:Name="Skill4" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
         </StackPanel>-->
-        <Button Content="Submit" Command="{Binding AddMonster}"/>
-        
-        <TextBox x:Name="PrintedValues" Text="{Binding Monsters, diag:PresentationTraceSources.TraceLevel=High}" Height="Auto" IsReadOnly="True"/>
+        <Button Content="Submit" Command="{Binding AddMonster}" Margin="0 5 0 5"/>
 
         <DataGrid ItemsSource="{Binding Monsters}" AutoGenerateColumns="True" IsReadOnly="True">
 
