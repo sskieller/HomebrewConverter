@@ -248,8 +248,13 @@ namespace HomebrewConverter.Model
                    && !string.IsNullOrWhiteSpace(MonsterSize)
                    && !string.IsNullOrWhiteSpace(MonsterType)
                    && !string.IsNullOrWhiteSpace(MonsterAlignment)
-                   && !string.IsNullOrWhiteSpace(MonsterArmorClass.ToString())
-                   && !string.IsNullOrWhiteSpace(MonsterArmorType);
+                   && !string.IsNullOrWhiteSpace(MonsterArmorClass.ToString()) && MonsterArmorClass > 0
+                   // MonsterArmorType
+                   && !string.IsNullOrWhiteSpace(MonsterHitPoints.ToString()) && MonsterHitPoints > 0
+                   && !string.IsNullOrWhiteSpace(MonsterSpeed.ToString()) && MonsterSpeed > 0
+                   // MonsterClimbSpeed
+                   // MonsterFlySpeed
+                    ; 
         }
 
         #endregion
@@ -259,7 +264,7 @@ namespace HomebrewConverter.Model
 
         protected bool Equals(Monster other)
         {
-            return string.Equals(_monsterTitle, other._monsterTitle) && string.Equals(_monsterSize, other._monsterSize) && string.Equals(_monsterType, other._monsterType) && string.Equals(_monsterAlignment, other._monsterAlignment);
+            return string.Equals(_monsterTitle, other._monsterTitle) && string.Equals(_monsterSize, other._monsterSize) && string.Equals(_monsterType, other._monsterType) && string.Equals(_monsterAlignment, other._monsterAlignment) && _monsterArmorClass == other._monsterArmorClass && _monsterHitPoints == other._monsterHitPoints && _monsterSpeed == other._monsterSpeed;
         }
 
         public override bool Equals(object obj)
@@ -278,6 +283,9 @@ namespace HomebrewConverter.Model
                 hashCode = (hashCode * 397) ^ (_monsterSize != null ? _monsterSize.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (_monsterType != null ? _monsterType.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (_monsterAlignment != null ? _monsterAlignment.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ _monsterArmorClass;
+                hashCode = (hashCode * 397) ^ _monsterHitPoints;
+                hashCode = (hashCode * 397) ^ _monsterSpeed;
                 return hashCode;
             }
         }

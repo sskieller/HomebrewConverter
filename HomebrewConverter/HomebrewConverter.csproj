@@ -57,7 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DummyDebugger.cs" />
     <Compile Include="Model\Categories.cs" />
     <Compile Include="Model\NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -70,9 +69,6 @@
       <DependentUpon>Homebrewery.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Views\Monsters\CreateNewMonster.xaml.cs">
-      <DependentUpon>CreateNewMonster.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Monsters\NewMonster.xaml.cs">
       <DependentUpon>NewMonster.xaml</DependentUpon>
     </Compile>
@@ -92,10 +88,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Monsters\CreateNewMonster.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Monsters\NewMonster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

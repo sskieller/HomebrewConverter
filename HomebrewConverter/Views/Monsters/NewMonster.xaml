@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:HomebrewConverter.Views.Monsters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="NewMonster_OnLoaded">
+             >
             
     <UserControl.Resources>
         <Style TargetType="Label" >
@@ -52,26 +52,25 @@
             <Label Content="Title:"/>
             <TextBox Style="{StaticResource TextInputTextBox}" 
                      Text="{Binding TempMonster.MonsterTitle}" 
-                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" 
-                     />
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             
             <Label Content="Size:"/>
             <ComboBox x:Name="MonsterSizeComboBox"
                       ItemsSource="{Binding MonsterSizeList}"
                       SelectedItem="{Binding TempMonster.MonsterSize}"
-                      GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"
-                    />
+                      GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
 
             <Label Content="Type:"/>
-            <ComboBox ItemsSource="{Binding MonsterTypeList}" 
+            <ComboBox x:Name="MonsterTypeComboBox" 
+                      ItemsSource="{Binding MonsterTypeList}" 
                       SelectedItem="{Binding TempMonster.MonsterType}"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             
             <Label Content="Alignment:"/>
-            <ComboBox ItemsSource="{Binding MonsterAlignmentList}" 
+            <ComboBox x:Name="MonsterAlignmentComboBox" 
+                      ItemsSource="{Binding MonsterAlignmentList}" 
                       SelectedItem="{Binding TempMonster.MonsterAlignment}"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" />
-
         </StackPanel>
 
         <StackPanel Style="{StaticResource RowPanel}">
@@ -79,14 +78,14 @@
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="Armor Type:"/>
             <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding TempMonster.MonsterArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <!--<Label Content="Hit Points:" />
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=HitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Speed:" />
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Speed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Climb:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Climb}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Fly:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Fly}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>-->
+            <Label Content="Hit Points:" />
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterHitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Walking speed:" />                                          
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Climbing speed:"/>                                           
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterClimbSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="Flying speed:"/>                                             
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterFlySpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
         </StackPanel>
 
         <!--<StackPanel Style="{StaticResource RowPanel}">

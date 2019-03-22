@@ -4,14 +4,12 @@ C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\bin\Debug\Hom
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\MainWindow.baml
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Views\Converters\Homebrewery.g.cs
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\MainWindow.g.cs
-C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Views\Monsters\CreateNewMonster.g.cs
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\App.g.cs
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter_MarkupCompile.cache
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter_MarkupCompile.lref
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\App.baml
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Views\Converters\Homebrewery.baml
-C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\Views\Monsters\CreateNewMonster.baml
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.g.resources
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.Properties.Resources.resources
 C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter\obj\Debug\HomebrewConverter.csproj.GenerateResource.cache
