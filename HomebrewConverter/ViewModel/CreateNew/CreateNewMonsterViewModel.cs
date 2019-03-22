@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using HomebrewConverter.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Windows.Controls;
 using System.Windows.Input;
-using HomebrewConverter.Model;
 
 namespace HomebrewConverter.ViewModel.CreateNew
 {
@@ -21,7 +20,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
             AddMonster = new RelayCommand(_ => AddMonsterExecute(), _ => true);
 
             Monsters = new ObservableCollection<Monster>();
-            
+
             Debug.WriteLine(MonsterSizeList.FirstOrDefault());
 
             var monsters = new List<string> { "Acolyte", "Dragon", "Kraken" };
@@ -56,7 +55,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
                 OnPropertyChanged();
             }
         }
-            
+
 
 
         private string _monsterTitle;
@@ -67,7 +66,9 @@ namespace HomebrewConverter.ViewModel.CreateNew
             set
             {
                 if (_monsterTitle == value)
+                {
                     return;
+                }
 
                 _monsterTitle = value;
                 OnPropertyChanged();
@@ -77,41 +78,51 @@ namespace HomebrewConverter.ViewModel.CreateNew
 
         #endregion
 
-        
+
         #region Commands
-        
+
         private void AddMonsterExecute()
         {
-            Debug.WriteLine($"Monster added.\n" +
-                            $"Title: {MonsterTitle}\n" +
-                            $"Size: {SelectedMonsterSize}");
+            
             Monsters?.Add(new Monster
             {
                 Title = MonsterTitle,
-                MonsterType = SelectedMonsterType,
-                MonsterAlignment = SelectedAlignment,
                 MonsterSize = SelectedMonsterSize,
+                MonsterType = SelectedMonsterType,
+                MonsterAlignment = SelectedMonsterAlignment,
+                
             });
+
+            var temp = Monsters.LastOrDefault();
+            Debug.WriteLine($"Monster added.\n" +
+                            $"Title: {temp.Title}\n" +
+                            $"Size: {temp.MonsterSize}\n" +
+                            $"Type: {temp.MonsterType}\n" +
+                            $"Alignment: {temp.MonsterAlignment}");
+
         }
 
 
         #endregion
 
-        
+        // TODO: Set default value in Combobox
         private string _selectedMonsterSize;
         public string SelectedMonsterSize
         {
             get => _selectedMonsterSize;
             set
             {
-                if (_selectedMonsterSize == value) return;
+                if (_selectedMonsterSize == value)
+                {
+                    return;
+                }
 
                 _selectedMonsterSize = value;
                 OnPropertyChanged();
             }
         }
 
-        public List<string> MonsterSizeList { get; set; } = new List<string>()
+        public List<string> MonsterSizeList { get; set; } = new List<string>
         {
             "Tiny",
             "Small",
@@ -131,13 +142,15 @@ namespace HomebrewConverter.ViewModel.CreateNew
             set
             {
                 if (_selectedMonsterType == value)
+                {
                     return;
+                }
 
                 _selectedMonsterType = value;
                 OnPropertyChanged();
             }
         }
-        public List<string> MonsterTypeList = new List<string>()
+        public List<string> MonsterTypeList { get; set; } = new List<string>
         {
             "Aberration",
             "Beast",
@@ -156,21 +169,23 @@ namespace HomebrewConverter.ViewModel.CreateNew
         };
 
 
-        private string _selectedAlignment;
+        private string _selectedMonsterAlignment;
 
-        public string SelectedAlignment
+        public string SelectedMonsterAlignment
         {
-            get => _selectedAlignment;
+            get => _selectedMonsterAlignment;
             set
             {
-                if (_selectedAlignment == value)
+                if (_selectedMonsterAlignment == value)
+                {
                     return;
+                }
 
-                _selectedAlignment = value;
+                _selectedMonsterAlignment = value;
                 OnPropertyChanged();
             }
         }
-        public List<string> AlignmentList = new List<string>()
+        public List<string> MonsterAlignmentList { get; set; } = new List<string>
         {
             "Any",
             "Lawful Good",
@@ -213,9 +228,14 @@ namespace HomebrewConverter.ViewModel.CreateNew
         {
             var str = "";
             if (i >= 0)
+            {
                 str = "+" + i;
+            }
             else
+            {
                 str = i.ToString();
+            }
+
             return str;
         }
 
@@ -224,7 +244,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
             var sb = new StringBuilder();
             sb.Append($"Title: {MonsterTitle}\n");
             sb.Append(
-                $"Subtitle: {SelectedMonsterSize} {SelectedMonsterType.ToLower()}, {SelectedAlignment}\n");
+                $"Subtitle: {SelectedMonsterSize} {SelectedMonsterType.ToLower()}, {SelectedMonsterAlignment}\n");
 
             //sb.Append($"Armor Class: {_monster.ArmorClass} ({_monster.ArmorType})\n");
             //sb.Append($"Hit Points: {_monster.HitPoints}\n");
