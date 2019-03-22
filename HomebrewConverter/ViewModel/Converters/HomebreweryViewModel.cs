@@ -108,7 +108,7 @@ namespace HomebrewConverter.ViewModel.Converters
             sb.Append($"> ___\n");
 
             // ======================= Condition etc Stats =======================
-            // TODO: Fix it so only title is bold
+            // Not implemented: Make it so only title is bold
             var values = ExtractStats(lines, _knownStats, true);
             foreach (var t in values)
             {

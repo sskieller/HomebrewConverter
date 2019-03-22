@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:HomebrewConverter.Views.Monsters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="NewMonster_OnLoaded"
              >
             
     <UserControl.Resources>
@@ -73,20 +74,20 @@
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" />
         </StackPanel>
 
-        <StackPanel Style="{StaticResource RowPanel}">
+        <WrapPanel>
             <Label Content="Armor Class:"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="Armor Type:"/>
             <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding TempMonster.MonsterArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="Hit Points:" />
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterHitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Walking speed:" />                                          
+            <Label Content="Walking speed:" />
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Climbing speed:"/>                                           
+            <Label Content="Climbing speed:"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterClimbSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="Flying speed:"/>                                             
+            <Label Content="Flying speed:"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterFlySpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-        </StackPanel>
+        </WrapPanel>
 
         <!--<StackPanel Style="{StaticResource RowPanel}">
             <Label Content="STR + mod"/>

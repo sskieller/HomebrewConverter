@@ -35,12 +35,12 @@ namespace HomebrewConverter.Views.Monsters
             }
         }
 
-        // TODO: Removes ability to pick using enter. Fix?
-        //private void NewMonster_OnLoaded(object sender, RoutedEventArgs e)
-        //{
-        //    MonsterSizeComboBox.SelectedItem = (MonsterSizeComboBox.ItemsSource as List<string>)?[0];
-        //    MonsterTypeComboBox.SelectedItem = (MonsterTypeComboBox.ItemsSource as List<string>)?[0];
-        //    MonsterAlignmentComboBox.SelectedItem = (MonsterAlignmentComboBox.ItemsSource as List<string>)?[0];
-        //}
+        // BUG: Removes ability to pick using enter. Fix?
+        private void NewMonster_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            MonsterSizeComboBox.SelectedItem = (MonsterSizeComboBox.ItemsSource as List<string>)?[0];
+            MonsterTypeComboBox.SelectedItem = (MonsterTypeComboBox.ItemsSource as List<string>)?[0];
+            MonsterAlignmentComboBox.SelectedItem = (MonsterAlignmentComboBox.ItemsSource as List<string>)?[0];
+        }
     }
 }
