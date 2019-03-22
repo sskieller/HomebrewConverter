@@ -1,0 +1,14 @@
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\HomebrewConverter.Test.deps.json
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\HomebrewConverter.Test.runtimeconfig.json
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\HomebrewConverter.Test.runtimeconfig.dev.json
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\HomebrewConverter.Test.dll
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\bin\Debug\netcoreapp2.2\HomebrewConverter.Test.pdb
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\obj\Debug\netcoreapp2.2\HomebrewConverter.Test.csprojAssemblyReference.cache
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\obj\Debug\netcoreapp2.2\HomebrewConverter.Test.csproj.CoreCompileInputs.cache
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\obj\Debug\netcoreapp2.2\HomebrewConverter.Test.AssemblyInfoInputs.cache
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\obj\Debug\netcoreapp2.2\HomebrewConverter.Test.AssemblyInfo.cs
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\obj\Debug\netcoreapp2.2\HomebrewConverter.Test.dll
+C:\Users\Skieller\source\repos\HomebrewConverter\HomebrewConverter.Test\obj\Debug\netcoreapp2.2\HomebrewConverter.Test.pdb

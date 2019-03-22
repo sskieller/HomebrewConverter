@@ -12,40 +12,39 @@ namespace HomebrewConverter.ViewModel.CreateNew
     {
         // Diagnose in XAML:
         //  {Binding Path=X, diag:PresentationTraceSources.TraceLevel=High}
+        private Monster _tempMonster = new Monster();
+        private ObservableCollection<Monster> _monsters;
+
+        public ICommand AddMonster { get; set; }
+        public List<string> MonsterSizeList => Categories.MonsterSizeList;
+        public List<string> MonsterTypeList => Categories.MonsterTypeList;
+        public List<string> MonsterAlignmentList => Categories.MonsterAlignmentList;
+
 
         #region Construction
 
         public CreateNewMonsterViewModel()
         {
-            AddMonster = new RelayCommand(_ => AddMonsterExecute(), _ => true);
+            // Relay Commands
+            AddMonster = new RelayCommand(_ => AddMonsterExecute(), _ => TempMonster.IsValid());
 
+            // Monsters saved TODO: Add to In-Memory SQL Database
             Monsters = new ObservableCollection<Monster>();
 
-            Debug.WriteLine(MonsterSizeList.FirstOrDefault());
-
+            // Adding test data
             var monsters = new List<string> { "Acolyte", "Dragon", "Kraken" };
             foreach (var monster in monsters)
             {
-                Monsters.Add(new Monster { Title = monster, MonsterType = "Nobody" });
+                Monsters.Add(new Monster { MonsterTitle = monster, MonsterType = "Nobody" });
             }
         }
-
-        public ICommand AddMonster { get; set; }
 
 
         #endregion
 
-
-        //x:Name="PeopleComboBox"
-        //DisplayMemberPath="Name"
-        //SelectedValue="{Binding Path=SelectedEntity.PersonID}"
-        //SelectedValuePath="ID"
-        ///>
-
         #region Properties
 
-        private ObservableCollection<Monster> _monsters;
-
+        
         public ObservableCollection<Monster> Monsters
         {
             get => _monsters;
@@ -56,25 +55,15 @@ namespace HomebrewConverter.ViewModel.CreateNew
             }
         }
 
-
-
-        private string _monsterTitle;
-
-        public string MonsterTitle
+        public Monster TempMonster
         {
-            get => _monsterTitle;
-            set
+            get => _tempMonster;
+            private set
             {
-                if (_monsterTitle == value)
-                {
-                    return;
-                }
-
-                _monsterTitle = value;
+                _tempMonster = value;
                 OnPropertyChanged();
             }
         }
-
 
         #endregion
 
@@ -83,144 +72,25 @@ namespace HomebrewConverter.ViewModel.CreateNew
 
         private void AddMonsterExecute()
         {
-            
-            Monsters?.Add(new Monster
+            var foundMonster = Monsters.FirstOrDefault(x => TempMonster.Equals(x));
+            if (foundMonster != null)
             {
-                Title = MonsterTitle,
-                MonsterSize = SelectedMonsterSize,
-                MonsterType = SelectedMonsterType,
-                MonsterAlignment = SelectedMonsterAlignment,
-                
-            });
+                Debug.WriteLine("Monster already exists");
+                return;
+            }
+            Monsters?.Add(TempMonster);
 
-            var temp = Monsters.LastOrDefault();
+            TempMonster = new Monster();
+
             Debug.WriteLine($"Monster added.\n" +
-                            $"Title: {temp.Title}\n" +
-                            $"Size: {temp.MonsterSize}\n" +
-                            $"Type: {temp.MonsterType}\n" +
-                            $"Alignment: {temp.MonsterAlignment}");
-
+                            $"MonsterTitle: {TempMonster.MonsterTitle}\n" +
+                            $"Size: {TempMonster.MonsterSize}\n" +
+                            $"Type: {TempMonster.MonsterType}\n" +
+                            $"Alignment: {TempMonster.MonsterAlignment}");
         }
 
 
         #endregion
-
-        // TODO: Set default value in Combobox
-        private string _selectedMonsterSize;
-        public string SelectedMonsterSize
-        {
-            get => _selectedMonsterSize;
-            set
-            {
-                if (_selectedMonsterSize == value)
-                {
-                    return;
-                }
-
-                _selectedMonsterSize = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public List<string> MonsterSizeList { get; set; } = new List<string>
-        {
-            "Tiny",
-            "Small",
-            "Medium",
-            "Large",
-            "Huge",
-            "Gargantuan",
-        };
-
-
-        // TODO: IMPLEMENT!
-
-        private string _selectedMonsterType;
-        public string SelectedMonsterType
-        {
-            get => _selectedMonsterType;
-            set
-            {
-                if (_selectedMonsterType == value)
-                {
-                    return;
-                }
-
-                _selectedMonsterType = value;
-                OnPropertyChanged();
-            }
-        }
-        public List<string> MonsterTypeList { get; set; } = new List<string>
-        {
-            "Aberration",
-            "Beast",
-            "Celestial",
-            "Construct",
-            "Dragon",
-            "Elemental",
-            "Fey",
-            "Fiend",
-            "Giant",
-            "Humanoid",
-            "Monstrosity",
-            "Ooze",
-            "Plant",
-            "Undead",
-        };
-
-
-        private string _selectedMonsterAlignment;
-
-        public string SelectedMonsterAlignment
-        {
-            get => _selectedMonsterAlignment;
-            set
-            {
-                if (_selectedMonsterAlignment == value)
-                {
-                    return;
-                }
-
-                _selectedMonsterAlignment = value;
-                OnPropertyChanged();
-            }
-        }
-        public List<string> MonsterAlignmentList { get; set; } = new List<string>
-        {
-            "Any",
-            "Lawful Good",
-            "Lawful Neutral",
-            "Lawful Evil",
-            "Neutral Good",
-            "True Neutral",
-            "Neutral Evil",
-            "Chaotic Good",
-            "Chaotic Neutral",
-            "Chaotic Evil",
-        };
-
-        public List<string> SkillsList = new List<string>
-        {
-            "Acrobatics",
-            "Animal Handling",
-            "Arcana",
-            "Athletics",
-            "Deception",
-            "History",
-            "Insight",
-            "Intimidation",
-            "Investigation",
-            "Medicine",
-            "Nature",
-            "Perception",
-            "Performance",
-            "Persuasion",
-            "Religion",
-            "Sleight of Hand",
-            "Stealth",
-            "Survival",
-        };
-
 
         #region OldCode
 
@@ -242,9 +112,9 @@ namespace HomebrewConverter.ViewModel.CreateNew
         private void ButtonBase_OnClick()
         {
             var sb = new StringBuilder();
-            sb.Append($"Title: {MonsterTitle}\n");
+            sb.Append($"MonsterTitle: {TempMonster.MonsterTitle}\n");
             sb.Append(
-                $"Subtitle: {SelectedMonsterSize} {SelectedMonsterType.ToLower()}, {SelectedMonsterAlignment}\n");
+                $"Subtitle: {TempMonster.MonsterType}\n");
 
             //sb.Append($"Armor Class: {_monster.ArmorClass} ({_monster.ArmorType})\n");
             //sb.Append($"Hit Points: {_monster.HitPoints}\n");

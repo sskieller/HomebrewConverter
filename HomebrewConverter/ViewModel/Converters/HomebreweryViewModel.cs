@@ -84,7 +84,7 @@ namespace HomebrewConverter.ViewModel.Converters
 
             sb.Append("___\n");
 
-            // ======================= Title and subtitle =======================
+            // ======================= MonsterTitle and subtitle =======================
             sb.Append($"> ## {lines[0]}\n");
             sb.Append($">*{lines[1]}*\n");
 
