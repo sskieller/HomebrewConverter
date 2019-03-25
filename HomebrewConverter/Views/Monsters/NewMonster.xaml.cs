@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -35,12 +37,18 @@ namespace HomebrewConverter.Views.Monsters
             }
         }
 
-        // BUG: Removes ability to pick using enter. Fix?
+        
         private void NewMonster_OnLoaded(object sender, RoutedEventArgs e)
         {
             MonsterSizeComboBox.SelectedItem = (MonsterSizeComboBox.ItemsSource as List<string>)?[0];
             MonsterTypeComboBox.SelectedItem = (MonsterTypeComboBox.ItemsSource as List<string>)?[0];
             MonsterAlignmentComboBox.SelectedItem = (MonsterAlignmentComboBox.ItemsSource as List<string>)?[0];
+        }
+
+        private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, "^[0-9]*$") || string.IsNullOrWhiteSpace(e.Text))
+                e.Handled = true;
         }
     }
 }

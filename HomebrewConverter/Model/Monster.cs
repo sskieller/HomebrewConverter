@@ -1,10 +1,6 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using HomebrewConverter.Annotations;
-
-namespace HomebrewConverter.Model
+﻿namespace HomebrewConverter.Model
 {
-    class Monster : NotifyPropertyChangedBase
+    internal class Monster : NotifyPropertyChangedBase
     {
         #region Construction
 
@@ -13,7 +9,7 @@ namespace HomebrewConverter.Model
 
         }
 
-        public Monster(string monsterTitle, string monsterSize, string monsterType, string monsterAlignment, int monsterArmorClass, string monsterArmorType, int monsterHitPoints, int monsterSpeed, int monsterClimbSpeed, int monsterFlySpeed, int monsterCharisma, int monsterWisdom, int monsterIntelligence, int monsterConstitution, int monsterDexterity, int monsterStrength)
+        public Monster(string monsterTitle, string monsterSize, string monsterType, string monsterAlignment, int monsterArmorClass, string monsterArmorType, int monsterHitPoints, int monsterSpeed, int monsterClimbSpeed, int monsterFlySpeed, int monsterCharisma, int monsterWisdom, int monsterIntelligence, int monsterConstitution, int monsterDexterity, string monsterStrength)
         {
             _monsterTitle = monsterTitle;
             _monsterSize = monsterSize;
@@ -48,16 +44,31 @@ namespace HomebrewConverter.Model
         private int _monsterSpeed;
         private int _monsterClimbSpeed;
         private int _monsterFlySpeed;
-        private int _monsterCharisma;
-        private int _monsterWisdom;
-        private int _monsterIntelligence;
-        private int _monsterConstitution;
+        private string _monsterStrength;
         private int _monsterDexterity;
-        private int _monsterStrength;
-
+        private int _monsterConstitution;
+        private int _monsterIntelligence;
+        private int _monsterWisdom;
+        private int _monsterCharisma;
+        private int _monsterCharismaModifier;
+        private int _monsterWisdomModifier;
+        private int _monsterIntelligenceModifier;
+        private int _monsterConstitutionModifier;
+        private int _monsterDexterityModifier;
+        private int _monsterStrengthModifier;
 
         #endregion
 
+        #region Commands
+
+        private static int GetModifer(int i)
+        {
+
+            //int.TryParse(s, out var i);
+            return i / 2 - 5;
+        }
+
+        #endregion
 
         #region Property Implementations
 
@@ -66,7 +77,11 @@ namespace HomebrewConverter.Model
             get => _monsterTitle;
             set
             {
-                if (_monsterTitle == value) return;
+                if (_monsterTitle == value)
+                {
+                    return;
+                }
+
                 _monsterTitle = value;
                 OnPropertyChanged();
             }
@@ -77,18 +92,26 @@ namespace HomebrewConverter.Model
             get => _monsterSize;
             set
             {
-                if (_monsterSize == value) return;
+                if (_monsterSize == value)
+                {
+                    return;
+                }
+
                 _monsterSize = value;
                 OnPropertyChanged();
             }
         }
-        
+
         public string MonsterType
         {
             get => _monsterType;
             set
             {
-                if (_monsterType == value) return;
+                if (_monsterType == value)
+                {
+                    return;
+                }
+
                 _monsterType = value;
                 OnPropertyChanged();
             }
@@ -99,7 +122,11 @@ namespace HomebrewConverter.Model
             get => _monsterAlignment;
             set
             {
-                if (_monsterAlignment == value) return;
+                if (_monsterAlignment == value)
+                {
+                    return;
+                }
+
                 _monsterAlignment = value;
                 OnPropertyChanged();
             }
@@ -110,7 +137,11 @@ namespace HomebrewConverter.Model
             get => _monsterArmorClass;
             set
             {
-                if (value == _monsterArmorClass) return;
+                if (value == _monsterArmorClass)
+                {
+                    return;
+                }
+
                 _monsterArmorClass = value;
                 OnPropertyChanged();
             }
@@ -121,7 +152,11 @@ namespace HomebrewConverter.Model
             get => _monsterArmorType;
             set
             {
-                if (value == _monsterArmorType) return;
+                if (value == _monsterArmorType)
+                {
+                    return;
+                }
+
                 _monsterArmorType = value;
                 OnPropertyChanged();
             }
@@ -132,7 +167,11 @@ namespace HomebrewConverter.Model
             get => _monsterHitPoints;
             set
             {
-                if (value == _monsterHitPoints) return;
+                if (value == _monsterHitPoints)
+                {
+                    return;
+                }
+
                 _monsterHitPoints = value;
                 OnPropertyChanged();
             }
@@ -143,7 +182,11 @@ namespace HomebrewConverter.Model
             get => _monsterSpeed;
             set
             {
-                if (value == _monsterSpeed) return;
+                if (value == _monsterSpeed)
+                {
+                    return;
+                }
+
                 _monsterSpeed = value;
                 OnPropertyChanged();
             }
@@ -154,7 +197,11 @@ namespace HomebrewConverter.Model
             get => _monsterClimbSpeed;
             set
             {
-                if (value == _monsterClimbSpeed) return;
+                if (value == _monsterClimbSpeed)
+                {
+                    return;
+                }
+
                 _monsterClimbSpeed = value;
                 OnPropertyChanged();
             }
@@ -165,20 +212,29 @@ namespace HomebrewConverter.Model
             get => _monsterFlySpeed;
             set
             {
-                if (value == _monsterFlySpeed) return;
+                if (value == _monsterFlySpeed)
+                {
+                    return;
+                }
+
                 _monsterFlySpeed = value;
                 OnPropertyChanged();
             }
         }
 
-        public int MonsterStrength
+        public string MonsterStrength
         {
             get => _monsterStrength;
             set
             {
-                if (value == _monsterStrength) return;
-                _monsterStrength = value;
+                if (value == _monsterStrength)
+                {
+                    return;
+                }
+
+                _monsterStrength = value.Trim();
                 OnPropertyChanged();
+                OnPropertyChanged("MonsterStrengthModifier");
             }
         }
 
@@ -187,7 +243,11 @@ namespace HomebrewConverter.Model
             get => _monsterDexterity;
             set
             {
-                if (value == _monsterDexterity) return;
+                if (value == _monsterDexterity)
+                {
+                    return;
+                }
+
                 _monsterDexterity = value;
                 OnPropertyChanged();
             }
@@ -198,7 +258,11 @@ namespace HomebrewConverter.Model
             get => _monsterConstitution;
             set
             {
-                if (value == _monsterConstitution) return;
+                if (value == _monsterConstitution)
+                {
+                    return;
+                }
+
                 _monsterConstitution = value;
                 OnPropertyChanged();
             }
@@ -209,7 +273,11 @@ namespace HomebrewConverter.Model
             get => _monsterIntelligence;
             set
             {
-                if (value == _monsterIntelligence) return;
+                if (value == _monsterIntelligence)
+                {
+                    return;
+                }
+
                 _monsterIntelligence = value;
                 OnPropertyChanged();
             }
@@ -220,7 +288,11 @@ namespace HomebrewConverter.Model
             get => _monsterWisdom;
             set
             {
-                if (value == _monsterWisdom) return;
+                if (value == _monsterWisdom)
+                {
+                    return;
+                }
+
                 _monsterWisdom = value;
                 OnPropertyChanged();
             }
@@ -231,8 +303,108 @@ namespace HomebrewConverter.Model
             get => _monsterCharisma;
             set
             {
-                if (value == _monsterCharisma) return;
+                if (value == _monsterCharisma)
+                {
+                    return;
+                }
+
                 _monsterCharisma = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int MonsterStrengthModifier
+        {
+            get => GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterStrength) ? "10" : MonsterStrength));
+            //set
+            //{
+            //    var temp = GetModifer(value);
+            //    if (temp == _monsterStrengthModifier)
+            //    {
+            //        return;
+            //    }
+
+            //    _monsterStrengthModifier = GetModifer(temp);
+            //    OnPropertyChanged();
+            //}
+        }
+
+        public int MonsterDexterityModifier
+        {
+            get => _monsterDexterityModifier;
+            set
+            {
+                var temp = GetModifer(value);
+                if (temp == _monsterDexterityModifier)
+                {
+                    return;
+                }
+
+                _monsterDexterityModifier = GetModifer(temp);
+                OnPropertyChanged();
+            }
+        }
+
+        public int MonsterConstitutionModifier
+        {
+            get => _monsterConstitutionModifier;
+            set
+            {
+                var temp = GetModifer(value);
+                if (temp == _monsterConstitutionModifier)
+                {
+                    return;
+                }
+
+                _monsterConstitutionModifier = GetModifer(temp);
+                OnPropertyChanged();
+            }
+        }
+
+        public int MonsterIntelligenceModifier
+        {
+            get => _monsterIntelligenceModifier;
+            set
+            {
+                var temp = GetModifer(value);
+                if (temp == _monsterIntelligenceModifier)
+                {
+                    return;
+                }
+
+                _monsterIntelligenceModifier = GetModifer(temp);
+                OnPropertyChanged();
+            }
+        }
+
+        public int MonsterWisdomModifier
+        {
+            get => _monsterWisdomModifier;
+            set
+            {
+                var temp = GetModifer(value);
+                if (temp == _monsterWisdomModifier)
+                {
+                    return;
+                }
+
+                _monsterWisdomModifier = GetModifer(temp);
+                OnPropertyChanged();
+            }
+        }
+
+        public int MonsterCharismaModifier
+        {
+            get => _monsterCharismaModifier;
+            set
+            {
+                var temp = GetModifer(value);
+                if (temp == _monsterCharismaModifier)
+                {
+                    return;
+                }
+
+                _monsterCharismaModifier = GetModifer(temp);
                 OnPropertyChanged();
             }
         }
@@ -252,12 +424,14 @@ namespace HomebrewConverter.Model
                    // MonsterArmorType
                    && !string.IsNullOrWhiteSpace(MonsterHitPoints.ToString()) && MonsterHitPoints > 0
                    && !string.IsNullOrWhiteSpace(MonsterSpeed.ToString()) && MonsterSpeed > 0
-                   // MonsterClimbSpeed
-                   // MonsterFlySpeed
-                    ; 
+                    // MonsterClimbSpeed
+                    // MonsterFlySpeed
+                    ;
         }
 
         #endregion
+
+        
 
         // ======================== EQUALS OPERATOR ====================
         #region Equals
@@ -269,10 +443,22 @@ namespace HomebrewConverter.Model
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Monster) obj);
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((Monster)obj);
         }
 
         public override int GetHashCode()

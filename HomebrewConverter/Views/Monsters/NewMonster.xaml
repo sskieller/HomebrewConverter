@@ -89,34 +89,41 @@
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterFlySpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
         </WrapPanel>
 
-        <!--<StackPanel Style="{StaticResource RowPanel}">
-            <Label Content="STR + mod"/>
-            <TextBox Name="Str" MaxLength="2" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Str}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource ModifierInputTextBox}" Text="{Binding Path=StrMod}"/>
+        <StackPanel Style="{StaticResource RowPanel}">
+            <Label Content="STR + Mod"/>
+            
+            <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     Text="{Binding TempMonster.MonsterStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label MinWidth="20" 
+                   Content="{Binding TempMonster.MonsterStrengthModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            
 
-            <Label Content="DEX + mod"/>
+            <!--<Label Content="DEX + Mod"/>
             <TextBox Name="Dex" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Dex}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=DexMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
 
-            <Label Content="CON + mod"/>
+            <Label Content="CON + Mod"/>
             <TextBox Name="Con" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Con}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ConMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
 
-            <Label Content="INT + mod"/>
+            <Label Content="INT + Mod"/>
             <TextBox Name="Int" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Int}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=IntMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
 
-            <Label Content="WIS + mod"/>
+            <Label Content="WIS + Mod"/>
             <TextBox Name="Wis" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Wis}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=WisMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
 
-            <Label Content="CHA + mod"/>
+            <Label Content="CHA + Mod"/>
             <TextBox Name="Cha" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Cha}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ChaMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ChaMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>-->
 
         </StackPanel>
 
-        <StackPanel Style="{StaticResource RowPanel}">
+        <!--<StackPanel Style="{StaticResource RowPanel}">
             <Label Content="Saving Throws:   STR"   />
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowSTR}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="DEX"/>
@@ -129,9 +136,9 @@
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowWIS}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
             <Label Content="CHA"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowCHA}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-        </StackPanel>
+        </StackPanel>-->
 
-        <StackPanel Style="{StaticResource RowPanel}">
+        <!--<StackPanel Style="{StaticResource RowPanel}">
             <Label Content="Skill 1: " />
             <ComboBox x:Name="Skill1" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
             <Label Content="Skill 2: " />

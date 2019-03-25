@@ -16,6 +16,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
         private ObservableCollection<Monster> _monsters;
 
         public ICommand AddMonster { get; set; }
+        public ICommand GetModifier { get; set; }
         public List<string> MonsterSizeList => Categories.MonsterSizeList;
         public List<string> MonsterTypeList => Categories.MonsterTypeList;
         public List<string> MonsterAlignmentList => Categories.MonsterAlignmentList;
@@ -27,6 +28,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
         {
             // Relay Commands
             AddMonster = new RelayCommand(_ => AddMonsterExecute(), _ => TempMonster.IsValid());
+            
 
             // Monsters saved TODO: Add to In-Memory SQL Database
             Monsters = new ObservableCollection<Monster>();
@@ -88,6 +90,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
                             $"Type: {TempMonster.MonsterType}\n" +
                             $"Alignment: {TempMonster.MonsterAlignment}");
         }
+   
 
 
         #endregion
