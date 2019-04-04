@@ -82,7 +82,12 @@ namespace HomebrewConverter.ViewModel.CreateNew
             }
             Monsters?.Add(TempMonster);
 
-            TempMonster = new Monster();
+            TempMonster = new Monster
+            {
+                MonsterSize = MonsterSizeList.FirstOrDefault(),
+                MonsterType = MonsterTypeList.FirstOrDefault(),
+                MonsterAlignment = MonsterAlignmentList.FirstOrDefault(),
+            };
 
             Debug.WriteLine($"Monster added.\n" +
                             $"MonsterTitle: {TempMonster.MonsterTitle}\n" +
@@ -92,60 +97,6 @@ namespace HomebrewConverter.ViewModel.CreateNew
         }
    
 
-
-        #endregion
-
-        #region OldCode
-
-        private string WithSign(int i)
-        {
-            var str = "";
-            if (i >= 0)
-            {
-                str = "+" + i;
-            }
-            else
-            {
-                str = i.ToString();
-            }
-
-            return str;
-        }
-
-        private void ButtonBase_OnClick()
-        {
-            var sb = new StringBuilder();
-            sb.Append($"MonsterTitle: {TempMonster.MonsterTitle}\n");
-            sb.Append(
-                $"Subtitle: {TempMonster.MonsterType}\n");
-
-            //sb.Append($"Armor Class: {_monster.MonsterArmorClass} ({_monster.MonsterArmorType})\n");
-            //sb.Append($"Hit Points: {_monster.MonsterHitPoints}\n");
-            //sb.Append($"MonsterSpeed: {_monster.MonsterSpeed}ft. ");
-            //if (_monster.MonsterClimbSpeed > 0)
-            //{
-            //    sb.Append($"MonsterClimbSpeed: {_monster.MonsterClimbSpeed}ft. ");
-            //}
-            //if (_monster.MonsterFlySpeed > 0)
-            //{
-            //    sb.Append($"MonsterFlySpeed: {_monster.MonsterFlySpeed}ft.");
-            //}
-            //sb.Append("\n");
-
-            //sb.Append(
-            //    $"Stats: " +
-            //    $"STR: {_monster.MonsterStrength} ({WithSign(_monster.StrMod)}) " +
-            //    $"DEX: {_monster.MonsterDexterity} ({WithSign(_monster.DexMod)}) " +
-            //    $"CON: {_monster.MonsterConstitution} ({WithSign(_monster.ConMod)}) " +
-            //    $"INT: {_monster.MonsterIntelligence} ({WithSign(_monster.IntMod)}) " +
-            //    $"WIS: {_monster.MonsterWisdom} ({WithSign(_monster.WisMod)}) " +
-            //    $"CHA: {_monster.Cha} ({WithSign(_monster.ChaMod)})\n");
-
-            //sb.Append($"Saving Throws: \n");
-
-
-            Debug.WriteLine(sb.ToString());
-        }
 
         #endregion
     }

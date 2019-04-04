@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="NewMonster_OnLoaded"
              >
-            
+
     <UserControl.Resources>
         <Style TargetType="Label" >
             <Setter Property="Margin" Value="0 0 0 0"/>
@@ -48,13 +48,15 @@
 
     <StackPanel Orientation="Vertical" Background="Wheat">
         <Label Content="Here you can write in the data for a monster"/>
-        <StackPanel Style="{StaticResource RowPanel}">
-            
+        <WrapPanel>
             <Label Content="Title:"/>
             <TextBox Style="{StaticResource TextInputTextBox}" 
-                     Text="{Binding TempMonster.MonsterTitle}" 
-                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            
+                     Text="{Binding TempMonster.MonsterTitle}"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"
+                     GotMouseCapture="TextBox_OnGotMouseCapture"/>
+
             <Label Content="Size:"/>
             <ComboBox x:Name="MonsterSizeComboBox"
                       ItemsSource="{Binding MonsterSizeList}"
@@ -66,62 +68,112 @@
                       ItemsSource="{Binding MonsterTypeList}" 
                       SelectedItem="{Binding TempMonster.MonsterType}"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
-            
+
             <Label Content="Alignment:"/>
             <ComboBox x:Name="MonsterAlignmentComboBox" 
                       ItemsSource="{Binding MonsterAlignmentList}" 
                       SelectedItem="{Binding TempMonster.MonsterAlignment}"
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" />
-        </StackPanel>
+        </WrapPanel>
 
         <WrapPanel>
             <Label Content="Armor Class:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"/>
             <Label Content="Armor Type:"/>
-            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding TempMonster.MonsterArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource TextInputTextBox}" Text="{Binding TempMonster.MonsterArmorType}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
             <Label Content="Hit Points:" />
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterHitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterHitPoints}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"/>
             <Label Content="Walking speed:" />
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"/>
             <Label Content="Climbing speed:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterClimbSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterClimbSpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"
+                     PreviewTextInput="UIElement_OnPreviewTextInput"/>
             <Label Content="Flying speed:"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterFlySpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterFlySpeed}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"
+                     PreviewTextInput="UIElement_OnPreviewTextInput"/>
         </WrapPanel>
 
-        <StackPanel Style="{StaticResource RowPanel}">
+        <!--The class stats and modifiers --> 
+        <WrapPanel>
             <Label Content="STR + Mod"/>
-            
             <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
                      PreviewTextInput="UIElement_OnPreviewTextInput"
                      Text="{Binding TempMonster.MonsterStrength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     
-                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
             <Label MinWidth="20" 
                    Content="{Binding TempMonster.MonsterStrengthModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
             
-
-            <!--<Label Content="DEX + Mod"/>
-            <TextBox Name="Dex" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Dex}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=DexMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <Label Content="DEX + Mod"/>
+            <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     Text="{Binding TempMonster.MonsterDexterity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
+            <Label MinWidth="20" 
+                   Content="{Binding TempMonster.MonsterDexterityModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="CON + Mod"/>
-            <TextBox Name="Con" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Con}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ConMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     Text="{Binding TempMonster.MonsterConstitution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
+            <Label MinWidth="20" 
+                   Content="{Binding TempMonster.MonsterConstitutionModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="INT + Mod"/>
-            <TextBox Name="Int" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Int}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=IntMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     Text="{Binding TempMonster.MonsterIntelligence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
+            <Label MinWidth="20" 
+                   Content="{Binding TempMonster.MonsterIntelligenceModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="WIS + Mod"/>
-            <TextBox Name="Wis" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Wis}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=WisMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
+            <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     Text="{Binding TempMonster.MonsterWisdom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
+            <Label MinWidth="20" 
+                   Content="{Binding TempMonster.MonsterWisdomModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <Label Content="CHA + Mod"/>
-            <TextBox Name="Cha" Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=Cha}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=ChaMod}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>-->
+            <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
+                     PreviewTextInput="UIElement_OnPreviewTextInput"
+                     Text="{Binding TempMonster.MonsterCharisma, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     BorderBrush="Red"
+                     TextChanged="TextBoxBase_OnTextChanged"
+                     GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
+            <Label MinWidth="20" 
+                   Content="{Binding TempMonster.MonsterCharismaModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        </StackPanel>
+        </WrapPanel>
+
+        <WrapPanel>
+            <Label Content="Saving Throws:" FontWeight="Bold"/>
+            
+            <Label Content="STR"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}"
+                     Text="{Binding TempMonster.MonsterSavingThrowStrength}"
+                     />
+        </WrapPanel>
 
         <!--<StackPanel Style="{StaticResource RowPanel}">
             <Label Content="Saving Throws:   STR"   />

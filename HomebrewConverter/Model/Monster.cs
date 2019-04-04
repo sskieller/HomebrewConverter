@@ -8,8 +8,8 @@
         {
 
         }
-
-        public Monster(string monsterTitle, string monsterSize, string monsterType, string monsterAlignment, int monsterArmorClass, string monsterArmorType, int monsterHitPoints, int monsterSpeed, int monsterClimbSpeed, int monsterFlySpeed, int monsterCharisma, int monsterWisdom, int monsterIntelligence, int monsterConstitution, int monsterDexterity, string monsterStrength)
+        
+        public Monster(string monsterTitle, string monsterSize, string monsterType, string monsterAlignment, int monsterArmorClass, string monsterArmorType, int monsterHitPoints, int monsterSpeed, int monsterClimbSpeed, int monsterFlySpeed, string monsterStrength, string monsterDexterity, string monsterConstitution, string monsterIntelligence, string monsterWisdom, string monsterCharisma)
         {
             _monsterTitle = monsterTitle;
             _monsterSize = monsterSize;
@@ -21,12 +21,12 @@
             _monsterSpeed = monsterSpeed;
             _monsterClimbSpeed = monsterClimbSpeed;
             _monsterFlySpeed = monsterFlySpeed;
-            _monsterCharisma = monsterCharisma;
-            _monsterWisdom = monsterWisdom;
-            _monsterIntelligence = monsterIntelligence;
-            _monsterConstitution = monsterConstitution;
-            _monsterDexterity = monsterDexterity;
             _monsterStrength = monsterStrength;
+            _monsterDexterity = monsterDexterity;
+            _monsterConstitution = monsterConstitution;
+            _monsterIntelligence = monsterIntelligence;
+            _monsterWisdom = monsterWisdom;
+            _monsterCharisma = monsterCharisma;
         }
 
         #endregion
@@ -45,28 +45,28 @@
         private int _monsterClimbSpeed;
         private int _monsterFlySpeed;
         private string _monsterStrength;
-        private int _monsterDexterity;
-        private int _monsterConstitution;
-        private int _monsterIntelligence;
-        private int _monsterWisdom;
-        private int _monsterCharisma;
+        private string _monsterDexterity;
+        private string _monsterConstitution;
+        private string _monsterIntelligence;
+        private string _monsterWisdom;
+        private string _monsterCharisma;
+
+
+        // Used for notifying UI Elements, do not delete
+        #pragma warning disable CS0169 // Warning for unused variables
         private int _monsterCharismaModifier;
         private int _monsterWisdomModifier;
         private int _monsterIntelligenceModifier;
         private int _monsterConstitutionModifier;
         private int _monsterDexterityModifier;
         private int _monsterStrengthModifier;
+        #pragma warning restore CS0169
 
         #endregion
 
         #region Commands
 
-        private static int GetModifer(int i)
-        {
 
-            //int.TryParse(s, out var i);
-            return i / 2 - 5;
-        }
 
         #endregion
 
@@ -222,6 +222,13 @@
             }
         }
 
+        #region Class stats and modifiers
+
+        private static int GetModifer(int i)
+        {
+            return i / 2 - 5;
+        }
+
         public string MonsterStrength
         {
             get => _monsterStrength;
@@ -238,7 +245,10 @@
             }
         }
 
-        public int MonsterDexterity
+        public int MonsterStrengthModifier => GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterStrength) ? "10" : MonsterStrength));
+
+
+        public string MonsterDexterity
         {
             get => _monsterDexterity;
             set
@@ -250,10 +260,15 @@
 
                 _monsterDexterity = value;
                 OnPropertyChanged();
+                OnPropertyChanged("MonsterDexterityModifier");
             }
         }
 
-        public int MonsterConstitution
+        public int MonsterDexterityModifier =>
+            GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterDexterity) ? "10" : MonsterDexterity));
+
+
+        public string MonsterConstitution
         {
             get => _monsterConstitution;
             set
@@ -265,10 +280,15 @@
 
                 _monsterConstitution = value;
                 OnPropertyChanged();
+                OnPropertyChanged("MonsterConstitutionModifier");
             }
         }
 
-        public int MonsterIntelligence
+        public int MonsterConstitutionModifier =>
+            GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterConstitution) ? "10" : MonsterConstitution));
+
+
+        public string MonsterIntelligence
         {
             get => _monsterIntelligence;
             set
@@ -280,10 +300,15 @@
 
                 _monsterIntelligence = value;
                 OnPropertyChanged();
+                OnPropertyChanged("MonsterIntelligenceModifier");
             }
         }
 
-        public int MonsterWisdom
+        public int MonsterIntelligenceModifier =>
+            GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterIntelligence) ? "10" : MonsterIntelligence));
+
+
+        public string MonsterWisdom
         {
             get => _monsterWisdom;
             set
@@ -295,10 +320,15 @@
 
                 _monsterWisdom = value;
                 OnPropertyChanged();
+                OnPropertyChanged("MonsterWisdomModifier");
             }
         }
 
-        public int MonsterCharisma
+        public int MonsterWisdomModifier =>
+            GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterWisdom) ? "10" : MonsterWisdom));
+
+
+        public string MonsterCharisma
         {
             get => _monsterCharisma;
             set
@@ -310,113 +340,25 @@
 
                 _monsterCharisma = value;
                 OnPropertyChanged();
+                OnPropertyChanged("MonsterCharismaModifier");
             }
         }
 
-        public int MonsterStrengthModifier
-        {
-            get => GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterStrength) ? "10" : MonsterStrength));
-            //set
-            //{
-            //    var temp = GetModifer(value);
-            //    if (temp == _monsterStrengthModifier)
-            //    {
-            //        return;
-            //    }
+        public int MonsterCharismaModifier =>
+            GetModifer(int.Parse(string.IsNullOrWhiteSpace(MonsterCharisma) ? "10" : MonsterCharisma));
 
-            //    _monsterStrengthModifier = GetModifer(temp);
-            //    OnPropertyChanged();
-            //}
-        }
+        #endregion
 
-        public int MonsterDexterityModifier
-        {
-            get => _monsterDexterityModifier;
-            set
-            {
-                var temp = GetModifer(value);
-                if (temp == _monsterDexterityModifier)
-                {
-                    return;
-                }
-
-                _monsterDexterityModifier = GetModifer(temp);
-                OnPropertyChanged();
-            }
-        }
-
-        public int MonsterConstitutionModifier
-        {
-            get => _monsterConstitutionModifier;
-            set
-            {
-                var temp = GetModifer(value);
-                if (temp == _monsterConstitutionModifier)
-                {
-                    return;
-                }
-
-                _monsterConstitutionModifier = GetModifer(temp);
-                OnPropertyChanged();
-            }
-        }
-
-        public int MonsterIntelligenceModifier
-        {
-            get => _monsterIntelligenceModifier;
-            set
-            {
-                var temp = GetModifer(value);
-                if (temp == _monsterIntelligenceModifier)
-                {
-                    return;
-                }
-
-                _monsterIntelligenceModifier = GetModifer(temp);
-                OnPropertyChanged();
-            }
-        }
-
-        public int MonsterWisdomModifier
-        {
-            get => _monsterWisdomModifier;
-            set
-            {
-                var temp = GetModifer(value);
-                if (temp == _monsterWisdomModifier)
-                {
-                    return;
-                }
-
-                _monsterWisdomModifier = GetModifer(temp);
-                OnPropertyChanged();
-            }
-        }
-
-        public int MonsterCharismaModifier
-        {
-            get => _monsterCharismaModifier;
-            set
-            {
-                var temp = GetModifer(value);
-                if (temp == _monsterCharismaModifier)
-                {
-                    return;
-                }
-
-                _monsterCharismaModifier = GetModifer(temp);
-                OnPropertyChanged();
-            }
-        }
 
         #endregion
 
 
         #region Validators
 
+        // Makes sure the required regions are filled
         public bool IsValid()
         {
-            return !string.IsNullOrWhiteSpace(MonsterTitle)
+            return    !string.IsNullOrWhiteSpace(MonsterTitle)
                    && !string.IsNullOrWhiteSpace(MonsterSize)
                    && !string.IsNullOrWhiteSpace(MonsterType)
                    && !string.IsNullOrWhiteSpace(MonsterAlignment)
@@ -426,6 +368,18 @@
                    && !string.IsNullOrWhiteSpace(MonsterSpeed.ToString()) && MonsterSpeed > 0
                     // MonsterClimbSpeed
                     // MonsterFlySpeed
+                   && !string.IsNullOrWhiteSpace(MonsterStrength)
+                   && !string.IsNullOrWhiteSpace(MonsterDexterity)
+                   && !string.IsNullOrWhiteSpace(MonsterConstitution)
+                   && !string.IsNullOrWhiteSpace(MonsterIntelligence)
+                   && !string.IsNullOrWhiteSpace(MonsterWisdom)
+                   && !string.IsNullOrWhiteSpace(MonsterCharisma)
+                    // MonsterStrengthModifier
+                    // MonsterDexterityModifier
+                    // MonsterConstitutionModifier
+                    // MonsterIntelligenceModifier
+                    // MonsterWisdomModifier
+                    // MonsterCharismaModifier
                     ;
         }
 
