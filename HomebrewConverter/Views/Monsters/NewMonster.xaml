@@ -7,15 +7,15 @@
              xmlns:local="clr-namespace:HomebrewConverter.Views.Monsters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Loaded="NewMonster_OnLoaded"
-             >
+             Loaded="NewMonster_OnLoaded">
 
     <UserControl.Resources>
+        
         <Style TargetType="Label" >
             <Setter Property="Margin" Value="0 0 0 0"/>
             <Setter Property="MaxHeight" Value="25"/>
         </Style>
-
+        
         <Style TargetType="TextBox" x:Key="NumberInputTextBox">
             <Setter Property="MaxHeight" Value="20"/>
             <Setter Property="TextAlignment" Value="Justify"/>
@@ -46,8 +46,11 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel Orientation="Vertical" Background="Wheat">
-        <Label Content="Here you can write in the data for a monster"/>
+    <!-- Entire UserControl -->
+    <StackPanel Orientation="Vertical" Background="SaddleBrown">
+        <Label FontWeight="Bold" Content="Here you can write in the data for a monster"/>
+
+        <!-- Main stats -->
         <WrapPanel>
             <Label Content="Title:"/>
             <TextBox Style="{StaticResource TextInputTextBox}" 
@@ -76,6 +79,7 @@
                       GotKeyboardFocus="ComboBox_OnGotKeyboardFocus" />
         </WrapPanel>
 
+        <!-- Main stats -->
         <WrapPanel>
             <Label Content="Armor Class:"/>
             <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding TempMonster.MonsterArmorClass}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"
@@ -102,7 +106,7 @@
                      PreviewTextInput="UIElement_OnPreviewTextInput"/>
         </WrapPanel>
 
-        <!--The class stats and modifiers --> 
+        <!--The class stats and modifiers -->
         <WrapPanel>
             <Label Content="STR + Mod"/>
             <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
@@ -113,7 +117,7 @@
                      GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus" GotMouseCapture="TextBox_OnGotMouseCapture"/>
             <Label MinWidth="20" 
                    Content="{Binding TempMonster.MonsterStrengthModifier, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-            
+
             <Label Content="DEX + Mod"/>
             <TextBox MaxLength="2" Style="{StaticResource NumberInputTextBox}" 
                      PreviewTextInput="UIElement_OnPreviewTextInput"
@@ -166,44 +170,78 @@
 
         </WrapPanel>
 
+        <!-- Saving throws -->
         <WrapPanel>
             <Label Content="Saving Throws:" FontWeight="Bold"/>
-            
+
             <Label Content="STR"/>
             <TextBox Style="{StaticResource NumberInputTextBox}"
                      Text="{Binding TempMonster.MonsterSavingThrowStrength}"
                      />
+
+            <Label Content="DEX"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}"
+                     Text="{Binding TempMonster.MonsterSavingThrowDexterity}"
+            />
+
+            <Label Content="CON"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}"
+                     Text="{Binding TempMonster.MonsterSavingThrowConstitution}"
+            />
+
+            <Label Content="INT"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}"
+                     Text="{Binding TempMonster.MonsterSavingThrowIntelligence}"
+            />
+
+            <Label Content="WIS"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}"
+                     Text="{Binding TempMonster.MonsterSavingThrowWisdom}"
+            />
+
+            <Label Content="CHA"/>
+            <TextBox Style="{StaticResource NumberInputTextBox}"
+                     Text="{Binding TempMonster.MonsterSavingThrowCharisma}"
+            />
         </WrapPanel>
 
-        <!--<StackPanel Style="{StaticResource RowPanel}">
-            <Label Content="Saving Throws:   STR"   />
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowSTR}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="DEX"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowDEX}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="CON"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowCON}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="INT"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowINT}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="WIS"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowWIS}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-            <Label Content="CHA"/>
-            <TextBox Style="{StaticResource NumberInputTextBox}" Text="{Binding Path=SavingThrowCHA}" GotKeyboardFocus="TextBoxTitle_OnGotKeyboardFocus"/>
-        </StackPanel>-->
+        <!-- Skills -->
+        <WrapPanel>
+            <Label FontWeight="Bold" Content="Skills:"/>
 
-        <!--<StackPanel Style="{StaticResource RowPanel}">
-            <Label Content="Skill 1: " />
-            <ComboBox x:Name="Skill1" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
-            <Label Content="Skill 2: " />
-            <ComboBox x:Name="Skill2" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
-            <Label Content="Skill 3: " />
-            <ComboBox x:Name="Skill3" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
-            <Label Content="Skill 4: " />
-            <ComboBox x:Name="Skill4" Text="{Binding SkillsList}" GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
-        </StackPanel>-->
+            <Label Content="Skill 1:"/>
+            <ComboBox x:Name="MonsterSkill1ComboBox"
+                      ItemsSource="{Binding MonsterSkillsList}"
+                      SelectedItem="{Binding TempMonster.MonsterSkill1}"
+                      GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+
+            <Label Content="Skill 2:"/>
+            <ComboBox x:Name="MonsterSkill2ComboBox"
+                      ItemsSource="{Binding MonsterSkillsList}"
+                      SelectedItem="{Binding TempMonster.MonsterSkill2}"
+                      GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+
+            <Label Content="Skill 3:"/>
+            <ComboBox x:Name="MonsterSkill3ComboBox"
+                      ItemsSource="{Binding MonsterSkillsList}"
+                      SelectedItem="{Binding TempMonster.MonsterSkill3}"
+                      GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+
+            <Label Content="Skill 4:"/>
+            <ComboBox x:Name="MonsterSkill4ComboBox"
+                      ItemsSource="{Binding MonsterSkillsList}"
+                      SelectedItem="{Binding TempMonster.MonsterSkill4}"
+                      GotKeyboardFocus="ComboBox_OnGotKeyboardFocus"/>
+        </WrapPanel>
+
+
+
+
         <Button Content="Submit" Command="{Binding AddMonster}" Margin="0 5 0 5"/>
-
-        <DataGrid ItemsSource="{Binding Monsters}" AutoGenerateColumns="True" IsReadOnly="True">
-
+        <!-- Shows monsters currently stored -->
+        <DataGrid ItemsSource="{Binding Monsters}" AutoGenerateColumns="True" IsReadOnly="True" >
+            
         </DataGrid>
+        
     </StackPanel>
 </UserControl>

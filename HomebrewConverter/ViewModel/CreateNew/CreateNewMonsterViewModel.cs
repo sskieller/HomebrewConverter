@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 
 namespace HomebrewConverter.ViewModel.CreateNew
@@ -20,7 +19,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
         public List<string> MonsterSizeList => Categories.MonsterSizeList;
         public List<string> MonsterTypeList => Categories.MonsterTypeList;
         public List<string> MonsterAlignmentList => Categories.MonsterAlignmentList;
-
+        public List<string> MonsterSkillsList => Categories.MonsterSkillsList;
 
         #region Construction
 
@@ -28,7 +27,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
         {
             // Relay Commands
             AddMonster = new RelayCommand(_ => AddMonsterExecute(), _ => TempMonster.IsValid());
-            
+
 
             // Monsters saved TODO: Add to In-Memory SQL Database
             Monsters = new ObservableCollection<Monster>();
@@ -46,7 +45,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
 
         #region Properties
 
-        
+
         public ObservableCollection<Monster> Monsters
         {
             get => _monsters;
@@ -87,6 +86,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
                 MonsterSize = MonsterSizeList.FirstOrDefault(),
                 MonsterType = MonsterTypeList.FirstOrDefault(),
                 MonsterAlignment = MonsterAlignmentList.FirstOrDefault(),
+                MonsterSkill1 = MonsterSkillsList.FirstOrDefault(),
             };
 
             Debug.WriteLine($"Monster added.\n" +
@@ -95,7 +95,7 @@ namespace HomebrewConverter.ViewModel.CreateNew
                             $"Type: {TempMonster.MonsterType}\n" +
                             $"Alignment: {TempMonster.MonsterAlignment}");
         }
-   
+
 
 
         #endregion

@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net.Mime;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,6 +17,7 @@ namespace HomebrewConverter.Views.Monsters
             InitializeComponent();
         }
 
+        // Allows selection of all for easy editing
         private void TextBoxTitle_OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             var textBox = sender as TextBox;
@@ -36,9 +34,7 @@ namespace HomebrewConverter.Views.Monsters
             textBox?.SelectAll();
         }
 
-
-
-
+        // Makes sure the combobox folds out when focused by keyboard
         private void ComboBox_OnGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;
@@ -63,13 +59,19 @@ namespace HomebrewConverter.Views.Monsters
             MonsterSizeComboBox.SelectedItem = (MonsterSizeComboBox.ItemsSource as List<string>)?[0];
             MonsterTypeComboBox.SelectedItem = (MonsterTypeComboBox.ItemsSource as List<string>)?[0];
             MonsterAlignmentComboBox.SelectedItem = (MonsterAlignmentComboBox.ItemsSource as List<string>)?[0];
+            MonsterSkill1ComboBox.SelectedItem = (MonsterSkill1ComboBox.ItemsSource as List<string>)?[0];
+            MonsterSkill2ComboBox.SelectedItem = (MonsterSkill2ComboBox.ItemsSource as List<string>)?[0];
+            MonsterSkill3ComboBox.SelectedItem = (MonsterSkill3ComboBox.ItemsSource as List<string>)?[0];
+            MonsterSkill4ComboBox.SelectedItem = (MonsterSkill4ComboBox.ItemsSource as List<string>)?[0];
         }
 
         // Regex for numbers only
         private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             if (!Regex.IsMatch(e.Text, "^[0-9]*$") || string.IsNullOrWhiteSpace(e.Text))
+            {
                 e.Handled = true;
+            }
         }
     }
 }

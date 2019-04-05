@@ -46,8 +46,9 @@ namespace HomebrewConverter.Model
             "Chaotic Evil",
         };
 
-        public static List<string> SkillsList { get; } = new List<string>
+        public static List<string> MonsterSkillsList { get; } = new List<string>
         {
+            "None",
             "Acrobatics",
             "Animal Handling",
             "Arcana",
